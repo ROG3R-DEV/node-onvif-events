@@ -1,0 +1,25 @@
+{
+  "name": "node-onvif-events",
+  "version": "1.0.2",
+  "description": "An implementation of Node.js that detects the events of your camera that works with the onvif protocol",
+  "main": "onvif_index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rog3r-dev"
+  },
+  "keywords": [
+    "node",
+    "npm"
+  ],
+  "author": "Rogério Luiz <rogerio.macdev@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.0.0",
+    "argparse": "^1.0.10",
+    "node-fetch": "^2.1.2",
+    "onvif": "https://github.com/nickw444/onvif.git"
+  }
+}
