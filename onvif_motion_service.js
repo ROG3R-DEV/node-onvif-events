@@ -13,7 +13,7 @@ class MotionService {
       this.basePath = basePath
     }
   
-    logTime = () => {
+    logTime() {
       let nowDate = new Date();
       return nowDate.toLocaleDateString() + ' ' + nowDate.toLocaleTimeString([], { hour12: false });
     }
