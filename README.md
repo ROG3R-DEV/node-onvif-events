@@ -1,17 +1,21 @@
 # node-onvif-events
 
-<img width="914" alt="Node Onvif Events" src="https://i.imgur.com/xdYpPIs.png" align="center">
+
+<p align="center">
+    <img width="914" alt="Node Onvif Events" src="https://i.imgur.com/xdYpPIs.png" align="center">
+</p>
 
 <br />
 
-<center>
+<p align="center">
 <a href="https://www.npmjs.com/package/node-onvif-events"><img src="https://img.shields.io/npm/dm/node-onvif-events.svg"/></a>
 <a href="https://www.npmjs.com/package/node-onvif-events"><img src="https://img.shields.io/npm/v/node-onvif-events"/></a>
-</center>
-<center>
+</p>
+
+<p align="center">
 An implementation of Node.js that detects the events of your camera that works with the onvif protocol.
 You can use this library to turn on a lamp, send notification to a device among others .. the possibilities are limitless! 🚀✨⚡️
-</center>
+</p>
 
 <br />
 
