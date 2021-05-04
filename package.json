@@ -1,6 +1,6 @@
 {
   "name": "node-onvif-events",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "description": "An implementation of Node.js that detects the events of your camera that works with the onvif protocol",
   "main": "dist/index.js",
   "scripts": {
@@ -21,7 +21,7 @@
   "author": "Rogério Luiz <rogerio.macdev@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^13.13.5",
+    "@types/node": "^15.0.1",
     "@typescript-eslint/eslint-plugin": "^2.31.0",
     "@typescript-eslint/parser": "^2.31.0",
     "eslint": "^7.0.0",
