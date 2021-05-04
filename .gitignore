@@ -2,10 +2,5 @@ node_modules
 build
 logs
 .eslintcache
-.prettierrc
-.editorconfig
-.eslintignore
-.eslintrc.json
-tsconfig.json
 yarn.lock
 .DS_Store
