@@ -1,0 +1,8 @@
+{
+  "arrowParens": "always",
+  "bracketSpacing": true,
+  "parser": "typescript",
+  "quoteProps": "as-needed",
+  "proseWrap": "always",
+  "singleQuote": true
+}
