@@ -1,6 +1,6 @@
 {
   "name": "node-onvif-events",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "An implementation of Node.js that detects the events of your camera that works with the onvif protocol",
   "main": "dist/index.js",
   "scripts": {
