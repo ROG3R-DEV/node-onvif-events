@@ -2,17 +2,15 @@
 
 <img width="914" alt="Node Onvif Events" src="https://i.imgur.com/xdYpPIs.png" align="center">
 
-<center>
 <br />
 
-[![npm](https://img.shields.io/npm/dm/node-onvif-events.svg)](https://www.npmjs.com/package/node-onvif-events)
-[![npm](https://img.shields.io/npm/v/node-onvif-events.svg)](https://www.npmjs.com/package/node-onvif-events)
-
-
+<center>
+<a href="https://www.npmjs.com/package/node-onvif-events"><img src="https://img.shields.io/npm/dm/node-onvif-events.svg"/></a>
+<a href="https://www.npmjs.com/package/node-onvif-events"><img src="https://img.shields.io/npm/v/node-onvif-events"/></a>
+</center>
+<center>
 An implementation of Node.js that detects the events of your camera that works with the onvif protocol.
-
-you can use this library to turn on a lamp, send notification to a device among others .. the possibilities are limitless! 🚀✨⚡️
-
+You can use this library to turn on a lamp, send notification to a device among others .. the possibilities are limitless! 🚀✨⚡️
 </center>
 
 <br />
@@ -58,7 +56,7 @@ see the list of tested models, if your camera worked and is not in this list ple
 <br />
 
 
-## Event Monitor
+## Typescript Example
 
 ```js
 import { MotionDetector, Options } from 'node-onvif-events';
@@ -85,6 +83,34 @@ const startMotion = async () => {
 
 startMotion();
 
+```
+
+## Javascript Example
+
+```js
+const onvifEvents = require("node-onvif-events");
+
+let options = {
+  id: 1,
+  hostname: '192.168.0.160',
+  username: 'admin',
+  password: 'matrix@55901',
+  port: 80
+};
+
+const startMotion = async () => {
+  const detector = await onvifEvents.MotionDetector.create(options.id, options);
+  console.log(new Date(), '>> Motion Detection Listening!!');
+  detector.listen((motion) => {
+    if (motion) {
+      console.log(new Date(), '>> Motion Detected');
+    } else {
+      console.log(new Date(), '>> Motion Stopped');
+    }
+  });
+}
+
+startMotion();
 ```
 
 ### output
