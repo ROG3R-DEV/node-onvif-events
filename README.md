@@ -98,7 +98,7 @@ let options = {
   id: 1,
   hostname: '192.168.0.160',
   username: 'admin',
-  password: 'matrix@55901',
+  password: 'password',
   port: 80
 };
 
