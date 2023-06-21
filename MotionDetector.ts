@@ -1,35 +1,40 @@
 import { Cam, NotificationMessage, CamOptions } from 'onvif';
 
-const TOPIC = /RuleEngine\/CellMotionDetector\/Motion$/;
+const TOPICS = ['tns1:RuleEngine/CellMotionDetector/Motion'];
 
 export class MotionDetector {
   lastIsMotion: boolean = false;
 
-  private constructor(private cam: Cam, private id: number) {}
+  private constructor(
+    private cam: Cam,
+    private id: number,
+    private topics: Array<string>
+  ) {}
 
   static async create(
     id: number,
-    options: CamOptions
+    options: CamOptions,
+    topics: Array<string> = TOPICS
   ): Promise<MotionDetector> {
     return new Promise((resolve, reject) => {
       const cam = new Cam(options, (error) => {
         if (error) {
           reject(error);
         } else {
-          const monitor = new MotionDetector(cam, id);
+          const monitor = new MotionDetector(cam, id, topics);
           resolve(monitor);
         }
       });
     });
   }
 
-  listen(onMotion: (motion: boolean, id: number) => void) {
+  listen(onMotion: (motion: boolean, id: number, topic: string) => void) {
     this.cam.on('event', (message: NotificationMessage) => {
-      if (message?.topic?._?.match(TOPIC)) {
+      if (this.topics.includes(message?.topic?._)) {
         const motion = message.message.message.data.simpleItem.$.Value;
         if (motion !== this.lastIsMotion) {
           this.lastIsMotion = motion;
-          onMotion(motion, this.id);
+          onMotion(motion, this.id, message.topic._);
         }
       }
     });
