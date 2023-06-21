@@ -10,13 +10,16 @@ declare module 'onvif' {
         $: object;
         source: object;
         data: {
-          simpleItem: {
-            $: {
-              Value: boolean;
-            };
-          };
+          simpleItem: SimpleItem | Array<SimpleItem>;
         };
       };
+    };
+  }
+
+  interface SimpleItem {
+    $: {
+      Name: string;
+      Value: boolean;
     };
   }
 

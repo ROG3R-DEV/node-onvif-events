@@ -31,7 +31,10 @@ export class MotionDetector {
   listen(onMotion: (motion: boolean, id: number, topic: string) => void) {
     this.cam.on('event', (message: NotificationMessage) => {
       if (this.topics.includes(message?.topic?._)) {
-        const motion = message.message.message.data.simpleItem.$.Value;
+        const simpleItem = message.message.message.data.simpleItem;
+        const motion = (
+          simpleItem instanceof Array ? simpleItem[0] : simpleItem
+        ).$.Value;
         if (motion !== this.lastIsMotion) {
           this.lastIsMotion = motion;
           onMotion(motion, this.id, message.topic._);
