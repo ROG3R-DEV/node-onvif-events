@@ -11,14 +11,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.MotionDetector = void 0;
 const onvif_1 = require("onvif");
-const TOPIC = /RuleEngine\/CellMotionDetector\/Motion$/;
+const TOPICS = ['tns1:RuleEngine/CellMotionDetector/Motion'];
 class MotionDetector {
-    constructor(cam, id) {
+    constructor(cam, id, topics) {
         this.cam = cam;
         this.id = id;
+        this.topics = topics;
         this.lastIsMotion = false;
     }
-    static create(id, options) {
+    static create(id, options, topics = TOPICS) {
         return __awaiter(this, void 0, void 0, function* () {
             return new Promise((resolve, reject) => {
                 const cam = new onvif_1.Cam(options, (error) => {
@@ -26,7 +27,7 @@ class MotionDetector {
                         reject(error);
                     }
                     else {
-                        const monitor = new MotionDetector(cam, id);
+                        const monitor = new MotionDetector(cam, id, topics);
                         resolve(monitor);
                     }
                 });
@@ -35,12 +36,13 @@ class MotionDetector {
     }
     listen(onMotion) {
         this.cam.on('event', (message) => {
-            var _a, _b;
-            if ((_b = (_a = message === null || message === void 0 ? void 0 : message.topic) === null || _a === void 0 ? void 0 : _a._) === null || _b === void 0 ? void 0 : _b.match(TOPIC)) {
-                const motion = message.message.message.data.simpleItem.$.Value;
+            var _a;
+            if (this.topics.includes((_a = message === null || message === void 0 ? void 0 : message.topic) === null || _a === void 0 ? void 0 : _a._)) {
+                const simpleItem = message.message.message.data.simpleItem;
+                const motion = (simpleItem instanceof Array ? simpleItem[0] : simpleItem).$.Value;
                 if (motion !== this.lastIsMotion) {
                     this.lastIsMotion = motion;
-                    onMotion(motion, this.id);
+                    onMotion(motion, this.id, message.topic._);
                 }
             }
         });
